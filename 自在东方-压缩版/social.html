@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社交 - 自在东方</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .social-tab {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .social-tab-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .social-tab-item.active {
+            color: var(--color-primary);
+        }
+
+        .social-tab-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--color-primary);
+        }
+
+        .feed-item {
+            transition: transform 0.2s;
+        }
+
+        .feed-item:active {
+            transform: scale(0.98);
+        }
+
+        /* 新增聊天界面样式 */
+        .chat-list-item {
+            transition: background-color 0.2s;
+        }
+
+        .chat-list-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .chat-time {
+            font-size: 10px;
+            color: #999;
+        }
+
+        .chat-preview {
+            font-size: 12px;
+            color: #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .unread-badge {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-color: #ff3b30;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 18px;
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <div class="iphone-container">
+        <div class="iphone-screen">
+            <div class="h-8 bg-white flex items-center justify-between px-4 text-xs">
+                <span>9:41</span>
+                <div class="flex gap-1">
+                    <i class="fas fa-signal text-xs"></i>
+                    <i class="fas fa-wifi text-xs"></i>
+                    <i class="fas fa-battery-three-quarters text-xs"></i>
+                </div>
+            </div>
+
+            <div class="page-content">
+                <div class="safe-area mt-4">
+                    <h2 class="section-title text-xl font-bold mb-4" style="font-family: var(--font-serif);">社交</h2>
+
+                    <div class="social-tab safe-area">
+                        <div class="social-tab-item active" data-tab="feed">万象界</div>
+                        <div class="social-tab-item" data-tab="chat">聊天</div> <!-- 新增聊天标签 -->
+                        <div class="social-tab-item" data-tab="match">配对</div>
+                        <div class="social-tab-item" data-tab="circle">圈子</div>
+                    </div>
+
+                    <div id="feed-view">
+                        <!-- 原有万象界内容保持不变 -->
+                        <div class="card mb-4">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://api.dicebear.com/7.x/personas/svg?seed=user1&backgroundColor=ffd5dc&skinColor=fdbcb4&clothingColor=C8102E&hairColor=4a312a"
+                                    alt="头像" class="w-12 h-12 rounded-full">
+                                <div class="flex-1">
+                                    <textarea placeholder="分享你的发现..."
+                                        class="w-full p-2 border border-gray-200 rounded-lg text-sm resize-none"
+                                        rows="2"></textarea>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm text-gray-500">
+                                <button class="flex items-center gap-2"><i
+                                        class="fas fa-image text-red-600"></i>照片</button>
+                                <button class="flex items-center gap-2"><i
+                                        class="fas fa-video text-blue-600"></i>视频</button>
+                                <button class="flex items-center gap-2"><i
+                                        class="fas fa-map-marker-alt text-green-600"></i>位置</button>
+                                <button class="ml-auto px-4 py-1 bg-red-600 text-white rounded-full text-xs">发布</button>
+                            </div>
+                        </div>
+
+                        <div class="feed-item card mb-4">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="https://api.dicebear.com/7.x/personas/svg?seed=merchant&backgroundColor=ffd5dc&skinColor=fdbcb4&clothingColor=2F4F4F&hairColor=6c4c3f"
+                                    alt="头像" class="w-10 h-10 rounded-full">
+                                <div class="flex-1">
+                                    <p class="font-medium text-sm">李掌柜</p>
+                                    <p class="text-xs text-gray-500">2小时前 · 青龙镇</p>
+                                </div>
+                            </div>
+                            <p class="text-sm mb-3">发现了隐藏在青龙镇的秘密通道！有谁一起探索吗？</p>
+                            <div class="grid grid-cols-3 gap-2 mb-3">
+                                <div class="aspect-square bg-cover bg-center rounded-lg"
+                                    style="background-image: url('image/2.png')"></div>
+                                <div class="aspect-square bg-cover bg-center rounded-lg"
+                                    style="background-image: url('image/memory.png')"></div>
+                                <div class="aspect-square bg-cover bg-center rounded-lg"
+                                    style="background-image: url('image/juese2.png')"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 pt-3 border-t">
+                                <button class="flex items-center gap-2"><i class="far fa-heart"></i> 24</button>
+                                <button class="flex items-center gap-2"><i class="far fa-comment"></i> 8</button>
+                                <button class="flex items-center gap-2"><i class="far fa-share-square"></i> 分享</button>
+                            </div>
+                        </div>
+
+                        <div class="feed-item card mb-4">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="https://api.dicebear.com/7.x/personas/svg?seed=explorer&backgroundColor=e0f2fe&skinColor=fd926d&clothingColor=8B4513&hairColor=4a312a"
+                                    alt="头像" class="w-10 h-10 rounded-full">
+                                <div class="flex-1">
+                                    <p class="font-medium text-sm">王探员</p>
+                                    <p class="text-xs text-gray-500">5小时前 · 数字孪生</p>
+                                </div>
+                            </div>
+                            <p class="text-sm mb-3">在虚拟世界里找到了稀有线索！线上线下联动真的太有趣了！</p>
+                            <div class="aspect-video bg-cover bg-center rounded-lg mb-3"
+                                style="background-image: url('image/2.png')">
+                                <div class="w-full h-full flex items-center justify-center bg-black/30 rounded-lg">
+                                    <i class="fas fa-play-circle text-white text-4xl"></i>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm text-gray-500 pt-3 border-t">
+                                <button class="flex items-center gap-2"><i class="fas fa-heart text-red-600"></i>
+                                    56</button>
+                                <button class="flex items-center gap-2"><i class="far fa-comment"></i> 12</button>
+                                <button class="flex items-center gap-2"><i class="far fa-share-square"></i> 分享</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 新增聊天界面 -->
+                    <div id="chat-view" class="hidden">
+                        <!-- 搜索框 -->
+                        <div class="card mb-4">
+                            <div class="relative">
+                                <input type="text" placeholder="搜索聊天记录"
+                                    class="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-lg text-sm focus:outline-none">
+                                <i
+                                    class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+
+                        <!-- 聊天列表 -->
+                        <div class="space-y-1">
+                            <!-- 李掌柜聊天 -->
+                            <div class="chat-list-item card p-3 flex items-center gap-3">
+                                <img src="https://api.dicebear.com/7.x/personas/svg?seed=merchant&backgroundColor=ffd5dc&skinColor=fdbcb4&clothingColor=2F4F4F&hairColor=6c4c3f"
+                                    alt="李掌柜" class="w-12 h-12 rounded-full">
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-medium text-sm">李掌柜</span>
+                                        <span class="chat-time">10:24</span>
+                                    </div>
+                                    <p class="chat-preview">那条秘密通道我去过，可以给你些提示</p>
+                                </div>
+                                <span class="unread-badge">2</span>
+                            </div>
+
+                            <!-- 王探员聊天 -->
+                            <div class="chat-list-item card p-3 flex items-center gap-3">
+                                <img src="https://api.dicebear.com/7.x/personas/svg?seed=explorer&backgroundColor=e0f2fe&skinColor=fd926d&clothingColor=8B4513&hairColor=4a312a"
+                                    alt="王探员" class="w-12 h-12 rounded-full">
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-medium text-sm">王探员</span>
+                                        <span class="chat-time">昨天</span>
+                                    </div>
+                                    <p class="chat-preview"><i class="fas fa-check-circle text-green-500 mr-1"></i>
+                                        虚拟世界的线索已经标记好了</p>
+                                </div>
+                            </div>
+
+                            <!-- 张掌柜聊天 -->
+                            <div class="chat-list-item card p-3 flex items-center gap-3">
+                                <img src="https://api.dicebear.com/7.x/personas/svg?seed=zhang&backgroundColor=fff3cd&skinColor=ffdbac&clothingColor=DAA520&hairColor=8B4513"
+                                    alt="张掌柜" class="w-12 h-12 rounded-full">
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-medium text-sm">张掌柜</span>
+                                        <span class="chat-time">周一</span>
+                                    </div>
+                                    <p class="chat-preview">我有新的藏品想给你看看</p>
+                                </div>
+                            </div>
+
+                            <!-- 系统通知 -->
+                            <div class="chat-list-item card p-3 flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                                    <i class="fas fa-bell text-blue-500"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-medium text-sm">系统通知</span>
+                                        <span class="chat-time">3天前</span>
+                                    </div>
+                                    <p class="chat-preview">您有新的配对请求，请查收</p>
+                                </div>
+                            </div>
+
+                            <!-- 海丝盛景爱好者群聊 -->
+                            <div class="chat-list-item card p-3 flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=200&q=80"
+                                    alt="海丝盛景爱好者" class="w-12 h-12 rounded-full object-cover">
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-medium text-sm">海丝盛景爱好者</span>
+                                        <span class="chat-time">上周</span>
+                                    </div>
+                                    <p class="chat-preview"><span class="text-red-600">王探员:</span> 下周有线下活动，有人参加吗？</p>
+                                </div>
+                                <span class="unread-badge">5</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="match-view" class="hidden">
+                        <!-- 原有配对内容保持不变 -->
+                        <div class="card mb-4 text-center">
+                            <div class="relative h-80 bg-cover bg-center rounded-lg mb-4"
+                                style="background-image: url('image/people.png')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg">
+                                </div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white text-left">
+                                    <h3 class="font-bold text-xl mb-1">张掌柜</h3>
+                                    <p class="text-sm opacity-90">青龙镇商人 · 25岁</p>
+                                    <p class="text-xs mt-2">喜欢探索历史，寻找隐藏线索</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-center gap-4">
+                                <button class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center">
+                                    <i class="fas fa-times text-gray-600 text-2xl"></i>
+                                </button>
+                                <button class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center">
+                                    <i class="fas fa-heart text-white text-2xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-center text-sm text-gray-500">
+                            <p>左右滑动查看更多</p>
+                        </div>
+                    </div>
+
+                    <div id="circle-view" class="hidden">
+                        <!-- 原有圈子内容保持不变 -->
+                        <div class="card mb-4">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-16 h-16 bg-cover bg-center rounded-lg"
+                                    style="background-image: url('image/p2.png')"></div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold">崧泽·良渚文明探索</h3>
+                                    <p class="text-xs text-gray-500">1.2k 成员 · 今日活跃 156</p>
+                                </div>
+                                <button class="px-4 py-2 bg-red-600 text-white text-sm rounded-full">加入</button>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-16 h-16 bg-cover bg-center rounded-lg"
+                                    style="background-image: url('image/p9.png')"></div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold">海丝盛景爱好者</h3>
+                                    <p class="text-xs text-gray-500">856 成员 · 今日活跃 89</p>
+                                </div>
+                                <button class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded-full">已加入</button>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-16 h-16 bg-cover bg-center rounded-lg"
+                                    style="background-image: url('image/p10.png')"></div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold">洋场新韵收藏家</h3>
+                                    <p class="text-xs text-gray-500">634 成员 · 今日活跃 72</p>
+                                </div>
+                                <button class="px-4 py-2 bg-red-600 text-white text-sm rounded-full">加入</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main-tab-bar" class="tab-bar">
+                <a href="home.html" class="tab-bar-item active">
+                    <i class="tab-bar-icon fas fa-home"></i>
+                    <span class="tab-bar-text">主页</span>
+                </a>
+                <a href="world.html" class="tab-bar-item">
+                    <i class="tab-bar-icon fas fa-globe"></i>
+                    <span class="tab-bar-text">世界</span>
+                </a>
+                <a href="social.html" class="tab-bar-item">
+                    <i class="tab-bar-icon fas fa-users"></i>
+                    <span class="tab-bar-text">社交</span>
+                </a>
+                <a href="profile.html" class="tab-bar-item">
+                    <i class="tab-bar-icon fas fa-user"></i>
+                    <span class="tab-bar-text">我的</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            const initSocialTabs = () => {
+                document.querySelectorAll('.social-tab-item').forEach(item => {
+                    item.addEventListener('click', function () {
+                        document.querySelectorAll('.social-tab-item').forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        const tab = this.dataset.tab;
+                        const feedView = document.getElementById('feed-view');
+                        const chatView = document.getElementById('chat-view'); // 新增聊天视图
+                        const matchView = document.getElementById('match-view');
+                        const circleView = document.getElementById('circle-view');
+
+                        // 更新视图切换逻辑，添加聊天视图的显示控制
+                        if (feedView && chatView && matchView && circleView) {
+                            feedView.classList.toggle('hidden', tab !== 'feed');
+                            chatView.classList.toggle('hidden', tab !== 'chat');
+                            matchView.classList.toggle('hidden', tab !== 'match');
+                            circleView.classList.toggle('hidden', tab !== 'circle');
+                        }
+                    });
+                });
+            };
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initSocialTabs);
+            } else {
+                initSocialTabs();
+            }
+        })();
+    </script>
+    <script>
+        (function () {
+            // 获取当前页面文件名，例如 "world.html"
+            const currentPath = window.location.pathname;
+            const currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+
+            // 移除所有 tab 的 active 类
+            document.querySelectorAll('.tab-bar-item').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // 找到 href 匹配当前页面的 tab，添加 active 类
+            const currentTab = document.querySelector(`.tab-bar-item[href="${currentPage}"]`);
+            if (currentTab) {
+                currentTab.classList.add('active');
+            }
+        })();
+    </script>
+</body>
+
+</html>

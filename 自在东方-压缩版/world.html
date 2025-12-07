@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界 - 自在东方</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .world-tab {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .world-tab-item {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .world-tab-item.active {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .map-container {
+            height: 280px;
+            background: #e8f4f8;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .map-marker {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <div class="iphone-container">
+        <div class="iphone-screen">
+            <div class="h-8 bg-white flex items-center justify-between px-4 text-xs">
+                <span>9:41</span>
+                <div class="flex gap-1">
+                    <i class="fas fa-signal text-xs"></i>
+                    <i class="fas fa-wifi text-xs"></i>
+                    <i class="fas fa-battery-three-quarters text-xs"></i>
+                </div>
+            </div>
+
+            <div class="page-content">
+                <div class="safe-area mt-4">
+                    <h2 class="section-title text-xl font-bold mb-4" style="font-family: var(--font-serif);">世界</h2>
+
+                    <div class="world-tab safe-area">
+                        <div class="world-tab-item active" data-tab="offline">线下园区</div>
+                        <div class="world-tab-item" data-tab="digital">数字孪生</div>
+                    </div>
+
+                    <div id="offline-view">
+                        <div class="card p-0 overflow-hidden mb-4">
+                            <div class="map-container"
+                                style="background-image: url('image/map.png'); background-size: cover; background-position: center;">
+                                <div class="map-marker" style="top: 50%; left: 30%;"></div>
+                                <div class="map-marker"
+                                    style="top: 45%; left: 70%; background: var(--color-secondary);"></div>
+                                <div class="absolute bottom-4 left-4 right-4">
+                                    <div class="bg-white/90 backdrop-blur-sm rounded-lg p-3">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="text-sm font-medium">当前位置</p>
+                                                <p class="text-xs text-gray-500">青龙镇广场</p>
+                                            </div>
+                                            <button class="px-3 py-1 bg-red-600 text-white text-xs rounded-full">
+                                                <i class="fas fa-location-arrow mr-1"></i>导航
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <h3 class="font-bold mb-3">我的角色</h3>
+                            <div class="flex items-center gap-3">
+                                <img src="image/head.png" alt="角色" class="w-16 h-16 rounded-full">
+                                <div class="flex-1">
+                                    <p class="font-medium">张掌柜</p>
+                                    <p class="text-xs text-gray-500">青龙镇商人 · 等级 Lv.5</p>
+                                    <div class="mt-1 flex items-center gap-2 text-xs text-red-600">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>正在执行任务：寻找失落的货物</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <h3 class="font-bold mb-3 flex items-center justify-between">
+                                <span>热门地点</span>
+                                <span class="text-xs text-gray-500 font-normal">360全景</span>
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <div class="w-16 h-16 bg-cover bg-center rounded-lg"
+                                        style="background-image: url('image/p8.png')"></div>
+                                    <div class="flex-1">
+                                        <p class="font-medium text-sm">青龙镇剧场</p>
+                                        <p class="text-xs text-gray-500">距离 120m</p>
+                                        <div class="flex items-center gap-2 mt-1">
+                                            <span class="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded">人流量:
+                                                中</span>
+                                            <span class="text-xs text-gray-500">排队: 5分钟</span>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-gray-400"></i>
+                                </div>
+
+                                <div class="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+                                    <div class="w-16 h-16 bg-cover bg-center rounded-lg"
+                                        style="background-image: url('image/p9.png')"></div>
+                                    <div class="flex-1">
+                                        <p class="font-medium text-sm">海丝博物馆</p>
+                                        <p class="text-xs text-gray-500">距离 200m</p>
+                                        <div class="flex items-center gap-2 mt-1">
+                                            <span class="text-xs px-2 py-0.5 bg-green-100 text-green-600 rounded">人流量:
+                                                低</span>
+                                            <span class="text-xs text-gray-500">排队: 无需</span>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-right text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <h3 class="font-bold mb-3">服务设施</h3>
+                            <div class="grid grid-cols-4 gap-3">
+                                <div class="text-center">
+                                    <div
+                                        class="w-12 h-12 mx-auto mb-2 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-utensils text-blue-600"></i>
+                                    </div>
+                                    <span class="text-xs">餐饮</span>
+                                </div>
+                                <div class="text-center">
+                                    <div
+                                        class="w-12 h-12 mx-auto mb-2 bg-green-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-restroom text-green-600"></i>
+                                    </div>
+                                    <span class="text-xs">洗手间</span>
+                                </div>
+                                <div class="text-center">
+                                    <div
+                                        class="w-12 h-12 mx-auto mb-2 bg-yellow-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-parking text-yellow-600"></i>
+                                    </div>
+                                    <span class="text-xs">停车</span>
+                                </div>
+                                <div class="text-center">
+                                    <div
+                                        class="w-12 h-12 mx-auto mb-2 bg-purple-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-first-aid text-purple-600"></i>
+                                    </div>
+                                    <span class="text-xs">医疗</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="digital-twin-view" class="hidden">
+                        <div class="card p-0 overflow-hidden mb-4">
+                            <div class="relative h-64 bg-cover bg-center"
+                                style="background-image: url('image/p11.png'); background-size: cover;">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                                    <h3 class="font-bold text-lg mb-2">数字孪生世界</h3>
+                                    <p class="text-xs opacity-90 mb-3">自由探索虚拟园区</p>
+                                    <div class="flex items-center gap-2">
+                                        <button
+                                            class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm rounded-full">
+                                            <i class="fas fa-play mr-1"></i>进入世界
+                                        </button>
+                                        <button
+                                            class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm rounded-full">
+                                            <i class="fas fa-vr-cardboard mr-1"></i>VR模式
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <h3 class="font-bold mb-3">角色行动</h3>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                                        <i class="fas fa-walking text-red-600"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm">探索了青龙镇广场</p>
+                                        <p class="text-xs text-gray-500">2分钟前</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <i class="fas fa-gem text-blue-600"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm">获得线索：商船日志</p>
+                                        <p class="text-xs text-gray-500">10分钟前</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <h3 class="font-bold mb-3">资产同步</h3>
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-sync-alt text-green-600"></i>
+                                    <span class="text-sm">云端同步中</span>
+                                </div>
+                                <span class="text-xs text-gray-500">最新同步: 刚刚</span>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <h3 class="font-bold mb-3">虚实联动</h3>
+                            <div class="space-y-2">
+                                <div class="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                    <p class="text-sm font-medium mb-1">🎉 解锁彩蛋</p>
+                                    <p class="text-xs text-gray-600">在线下世界发现隐藏任务</p>
+                                </div>
+                                <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <p class="text-sm font-medium mb-1">💬 NPC状态更新</p>
+                                    <p class="text-xs text-gray-600">虚拟世界的选择影响NPC对话</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="main-tab-bar" class="tab-bar">
+                <a href="home.html" class="tab-bar-item active">
+                    <i class="tab-bar-icon fas fa-home"></i>
+                    <span class="tab-bar-text">主页</span>
+                </a>
+                <a href="world.html" class="tab-bar-item">
+                    <i class="tab-bar-icon fas fa-globe"></i>
+                    <span class="tab-bar-text">世界</span>
+                </a>
+                <a href="social.html" class="tab-bar-item">
+                    <i class="tab-bar-icon fas fa-users"></i>
+                    <span class="tab-bar-text">社交</span>
+                </a>
+                <a href="profile.html" class="tab-bar-item">
+                    <i class="tab-bar-icon fas fa-user"></i>
+                    <span class="tab-bar-text">我的</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            const initWorldTabs = () => {
+                document.querySelectorAll('.world-tab-item').forEach(item => {
+                    item.addEventListener('click', function () {
+                        document.querySelectorAll('.world-tab-item').forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        const tab = this.dataset.tab;
+                        const offlineView = document.getElementById('offline-view');
+                        const digitalView = document.getElementById('digital-twin-view');
+                        if (offlineView && digitalView) {
+                            offlineView.classList.toggle('hidden', tab !== 'offline');
+                            digitalView.classList.toggle('hidden', tab !== 'digital');
+                        }
+                    });
+                });
+            };
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initWorldTabs);
+            } else {
+                initWorldTabs();
+            }
+        })();
+    </script>
+
+    <script>
+        (function () {
+            // 获取当前页面文件名，例如 "world.html"
+            const currentPath = window.location.pathname;
+            const currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+
+            // 移除所有 tab 的 active 类
+            document.querySelectorAll('.tab-bar-item').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // 找到 href 匹配当前页面的 tab，添加 active 类
+            const currentTab = document.querySelector(`.tab-bar-item[href="${currentPage}"]`);
+            if (currentTab) {
+                currentTab.classList.add('active');
+            }
+        })();
+    </script>
+
+</body>
+
+</html>

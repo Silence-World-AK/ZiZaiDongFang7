@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的剧本 - 自在东方</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .task-item { border-left: 3px solid var(--color-primary); padding-left: 12px; margin-bottom: 16px; }
+        .task-item.completed { border-left-color: #10b981; opacity: 0.6; }
+        .progress-ring { transform: rotate(-90deg); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="iphone-container">
+        <div class="iphone-screen">
+            <div class="h-8 bg-white flex items-center justify-between px-4 text-xs">
+                <span>9:41</span>
+                <div class="flex gap-1">
+                    <i class="fas fa-signal text-xs"></i>
+                    <i class="fas fa-wifi text-xs"></i>
+                    <i class="fas fa-battery-three-quarters text-xs"></i>
+                </div>
+            </div>
+            
+            <div class="page-content">
+                <div class="safe-area mt-4">
+                    <div class="flex items-center justify-between mb-6">
+                        <button onclick="window.history.back()" class="text-gray-600">
+                            <i class="fas fa-arrow-left text-xl"></i>
+                        </button>
+                        <h2 class="section-title text-xl font-bold" style="font-family: var(--font-serif);">我的剧本</h2>
+                        <div class="w-8"></div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="image/head.png" alt="角色" class="w-16 h-16 rounded-full">
+                            <div class="flex-1">
+                                <h3 class="font-bold text-lg">张掌柜</h3>
+                                <p class="text-sm text-gray-500">青龙镇商人 · 等级 Lv.5</p>
+                                <div class="mt-2 flex items-center gap-2">
+                                    <span class="text-xs px-2 py-1 bg-red-100 text-red-600 rounded">硬核推理</span>
+                                    <span class="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded">情感</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t">
+                            <div class="text-center flex-1">
+                                <p class="text-2xl font-bold text-red-600">65%</p>
+                                <p class="text-xs text-gray-500">剧本进度</p>
+                            </div>
+                            <div class="text-center flex-1 border-l">
+                                <p class="text-2xl font-bold text-blue-600">12</p>
+                                <p class="text-xs text-gray-500">完成任务</p>
+                            </div>
+                            <div class="text-center flex-1 border-l">
+                                <p class="text-2xl font-bold text-green-600">8</p>
+                                <p class="text-xs text-gray-500">收集线索</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <h3 class="font-bold mb-4 flex items-center justify-between">
+                            <span>主线任务</span>
+                            <span class="text-sm font-normal text-gray-500">唐宋·青龙镇</span>
+                        </h3>
+                        <div class="task-item">
+                            <div class="flex items-start justify-between mb-2">
+                                <div class="flex-1">
+                                    <h4 class="font-medium mb-1">寻找失落的货物</h4>
+                                    <p class="text-xs text-gray-500">前往青龙镇码头，寻找商船丢失的货物线索</p>
+                                </div>
+                                <span class="text-xs px-2 py-1 bg-red-100 text-red-600 rounded">进行中</span>
+                            </div>
+                            <div class="mt-3 flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-red-600 text-xs"></i>
+                                <span class="text-xs text-gray-600">AR扫描点: 青龙镇码头</span>
+                            </div>
+                            <div class="mt-2 flex items-center gap-2">
+                                <i class="fas fa-clock text-blue-600 text-xs"></i>
+                                <span class="text-xs text-gray-600">舞台倒计时: 2小时30分钟</span>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex items-center justify-between text-xs text-gray-500 mb-1">
+                                    <span>进度</span>
+                                    <span>65%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-red-600 h-2 rounded-full" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <h3 class="font-bold mb-4">支线任务</h3>
+                        <div class="task-item completed">
+                            <div class="flex items-start justify-between mb-2">
+                                <div class="flex-1">
+                                    <h4 class="font-medium mb-1">拜访老友</h4>
+                                    <p class="text-xs text-gray-500">前往茶馆与老友会面</p>
+                                </div>
+                                <span class="text-xs px-2 py-1 bg-green-100 text-green-600 rounded">已完成</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-item">
+                            <div class="flex items-start justify-between mb-2">
+                                <div class="flex-1">
+                                    <h4 class="font-medium mb-1">收集商船日志</h4>
+                                    <p class="text-xs text-gray-500">在数字孪生世界中探索，找到商船日志</p>
+                                </div>
+                                <span class="text-xs px-2 py-1 bg-yellow-100 text-yellow-600 rounded">待开始</span>
+                            </div>
+                            <div class="mt-3 flex items-center gap-2">
+                                <i class="fas fa-vr-cardboard text-purple-600 text-xs"></i>
+                                <span class="text-xs text-gray-600">数字孪生世界</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <h3 class="font-bold mb-4">故事线</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">1</div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-sm mb-1">初入青龙镇</h4>
+                                    <p class="text-xs text-gray-500">你作为商人来到了繁华的青龙镇...</p>
+                                    <span class="text-xs text-green-600 mt-1 inline-block">✓ 已完成</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">2</div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-sm mb-1">丢失的货物</h4>
+                                    <p class="text-xs text-gray-500">商船在海上遇到了风暴，货物丢失...</p>
+                                    <span class="text-xs text-red-600 mt-1 inline-block">进行中</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-3 opacity-50">
+                                <div class="w-8 h-8 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center text-xs font-bold flex-shrink-0">3</div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-sm mb-1">真相大白</h4>
+                                    <p class="text-xs text-gray-500">揭开货物丢失的真相...</p>
+                                    <span class="text-xs text-gray-400 mt-1 inline-block">待解锁</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4">
+                        <h3 class="font-bold mb-4">AR扫描点</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-qrcode text-red-600"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium text-sm">青龙镇码头</p>
+                                    <p class="text-xs text-gray-500">距离 120m</p>
+                                </div>
+                                <button class="px-3 py-1 bg-red-600 text-white text-xs rounded-full">
+                                    前往
+                                </button>
+                            </div>
+                            
+                            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg opacity-50">
+                                <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-qrcode text-gray-400"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium text-sm">海丝博物馆</p>
+                                    <p class="text-xs text-gray-500">待解锁</p>
+                                </div>
+                                <span class="px-3 py-1 bg-gray-200 text-gray-400 text-xs rounded-full">
+                                    锁定
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

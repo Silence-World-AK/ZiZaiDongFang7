@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>角色测试 - 自在东方</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .option-card { border: 2px solid #e0e0e0; border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.3s; margin-bottom: 12px; }
+        .option-card:hover { border-color: var(--color-primary); background: #fff5f5; }
+        .option-card.selected { border-color: var(--color-primary); background: #ffe5e5; }
+        .progress-bar { height: 4px; background: #e0e0e0; border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--color-primary); transition: width 0.3s; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="iphone-container">
+        <div class="iphone-screen">
+            <div class="h-8 bg-white flex items-center justify-between px-4 text-xs">
+                <span>9:41</span>
+                <div class="flex gap-1">
+                    <i class="fas fa-signal text-xs"></i>
+                    <i class="fas fa-wifi text-xs"></i>
+                    <i class="fas fa-battery-three-quarters text-xs"></i>
+                </div>
+            </div>
+            
+            <div class="page-content">
+                <div class="safe-area mt-4">
+                    <div class="flex items-center justify-between mb-6">
+                        <button onclick="window.history.back()" class="text-gray-600">
+                            <i class="fas fa-arrow-left text-xl"></i>
+                        </button>
+                        <h2 class="section-title text-xl font-bold" style="font-family: var(--font-serif);">角色测试</h2>
+                        <div class="w-8"></div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-gray-600">进度</span>
+                            <span class="text-sm text-gray-600" id="progress-text">1/5</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="test-content">
+                        <div class="card mb-4">
+                            <h3 class="font-bold text-lg mb-4" id="question-title">请选择您的性别</h3>
+                            <div class="option-card" data-value="male">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #dbeafe;">
+                                        <i class="fas fa-mars text-xl" style="color: #2563eb;"></i>
+                                    </div>
+                                    <span class="font-medium">男性</span>
+                                </div>
+                            </div>
+                            <div class="option-card" data-value="female">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #fce7f3;">
+                                        <i class="fas fa-venus text-xl" style="color: #db2777;"></i>
+                                    </div>
+                                    <span class="font-medium">女性</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4" id="result-card" style="display: none;">
+                        <div class="text-center">
+                            <img src="image/head.png" alt="角色" class="w-32 h-32 rounded-full mx-auto mb-4">
+                            <h3 class="font-bold text-xl mb-2" id="character-name">张掌柜</h3>
+                            <p class="text-sm text-gray-600 mb-4" id="character-desc">青龙镇商人，善于发现隐藏线索</p>
+                            <div class="flex items-center justify-center gap-2 mb-4">
+                                <span class="px-3 py-1 rounded-full text-xs" style="background-color: #fee2e2; color: #dc2626;">硬核推理</span>
+                                <span class="px-3 py-1 rounded-full text-xs" style="background-color: #dbeafe; color: #2563eb;">情感</span>
+                                <span class="px-3 py-1 rounded-full text-xs" style="background-color: #d1fae5; color: #059669;">时代背景</span>
+                            </div>
+                            <button onclick="window.location.href='my-script.html'" class="w-full py-3 rounded-lg font-medium" style="background-color: var(--color-primary); color: white; cursor: pointer;">
+                                开始剧本之旅
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentStep = 0;
+        const questions = [
+            { title: '请选择您的性别', options: [
+                { value: 'male', label: '男性', icon: 'mars', color: 'blue' },
+                { value: 'female', label: '女性', icon: 'venus', color: 'pink' }
+            ]},
+            { title: '您的年龄范围', options: [
+                { value: '18-25', label: '18-25岁', icon: 'user', color: 'green' },
+                { value: '26-35', label: '26-35岁', icon: 'user', color: 'blue' },
+                { value: '36+', label: '36岁以上', icon: 'user', color: 'purple' }
+            ]},
+            { title: '您的兴趣偏好', options: [
+                { value: 'history', label: '历史文化', icon: 'book', color: 'orange' },
+                { value: 'mystery', label: '推理解谜', icon: 'search', color: 'red' },
+                { value: 'adventure', label: '冒险探索', icon: 'map', color: 'green' },
+                { value: 'social', label: '社交互动', icon: 'users', color: 'blue' }
+            ]},
+            { title: '您的MBTI类型（可选）', options: [
+                { value: 'INTJ', label: 'INTJ - 建筑师', icon: 'brain', color: 'purple' },
+                { value: 'ENFP', label: 'ENFP - 竞选者', icon: 'lightbulb', color: 'yellow' },
+                { value: 'ISTJ', label: 'ISTJ - 物流师', icon: 'clipboard', color: 'blue' },
+                { value: 'ESFP', label: 'ESFP - 表演者', icon: 'theater-masks', color: 'pink' }
+            ]},
+            { title: '您更偏好哪种体验', options: [
+                { value: 'hardcore', label: '硬核推理', icon: 'puzzle-piece', color: 'red' },
+                { value: 'emotional', label: '情感沉浸', icon: 'heart', color: 'pink' },
+                { value: 'funny', label: '欢乐轻松', icon: 'smile', color: 'yellow' },
+                { value: 'historical', label: '时代背景', icon: 'landmark', color: 'orange' }
+            ]}
+        ];
+        
+        const answers = [];
+        
+        function updateProgress() {
+            const progress = ((currentStep + 1) / questions.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = `${currentStep + 1}/${questions.length}`;
+        }
+        
+        function renderQuestion() {
+            if (currentStep >= questions.length) {
+                showResult();
+                return;
+            }
+            
+            const question = questions[currentStep];
+            document.getElementById('question-title').textContent = question.title;
+            const colorMap = {
+                'blue': { bg: '#dbeafe', text: '#2563eb' },
+                'pink': { bg: '#fce7f3', text: '#db2777' },
+                'green': { bg: '#d1fae5', text: '#059669' },
+                'purple': { bg: '#e9d5ff', text: '#7c3aed' },
+                'orange': { bg: '#fed7aa', text: '#ea580c' },
+                'red': { bg: '#fee2e2', text: '#dc2626' },
+                'yellow': { bg: '#fef3c7', text: '#d97706' }
+            };
+            const optionsHtml = question.options.map(opt => {
+                const colors = colorMap[opt.color] || colorMap.blue;
+                return `
+                <div class="option-card" data-value="${opt.value}">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: ${colors.bg};">
+                            <i class="fas fa-${opt.icon} text-xl" style="color: ${colors.text};"></i>
+                        </div>
+                        <span class="font-medium">${opt.label}</span>
+                    </div>
+                </div>
+            `;
+            }).join('');
+            
+            document.getElementById('test-content').innerHTML = `
+                <div class="card mb-4">
+                    <h3 class="font-bold text-lg mb-4" id="question-title">${question.title}</h3>
+                    ${optionsHtml}
+                </div>
+                <button id="next-btn" class="w-full py-3 rounded-lg font-medium" style="background-color: #e5e7eb; color: #6b7280;" disabled>
+                    下一步
+                </button>
+            `;
+            
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    answers[currentStep] = this.dataset.value;
+                    const nextBtn = document.getElementById('next-btn');
+                    nextBtn.disabled = false;
+                    nextBtn.style.backgroundColor = 'var(--color-primary)';
+                    nextBtn.style.color = 'white';
+                });
+            });
+            
+            document.getElementById('next-btn').addEventListener('click', () => {
+                if (answers[currentStep]) {
+                    currentStep++;
+                    updateProgress();
+                    renderQuestion();
+                }
+            });
+            
+            updateProgress();
+        }
+        
+        function showResult() {
+            document.getElementById('test-content').style.display = 'none';
+            document.getElementById('result-card').style.display = 'block';
+        }
+        
+        renderQuestion();
+    </script>
+</body>
+</html>

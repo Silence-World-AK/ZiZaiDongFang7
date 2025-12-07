@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页 - 自在东方</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="bg-gray-50">
+    <div class="iphone-container">
+        <div class="iphone-screen">
+            <div class="h-8 bg-white flex items-center justify-between px-4 text-xs">
+                <span>9:41</span>
+                <div class="flex gap-1">
+                    <i class="fas fa-signal text-xs"></i>
+                    <i class="fas fa-wifi text-xs"></i>
+                    <i class="fas fa-battery-three-quarters text-xs"></i>
+                </div>
+            </div>
+            
+            <div class="page-content">
+                <div class="relative h-48 overflow-hidden">
+                    <!-- 轮播容器（相对定位，限制显示区域） -->
+                    <div class="absolute inset-0">
+                      <!-- 每张图片绝对定位，叠加在一起 -->
+                      <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('image/p1.png');"></div>
+                      <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('image/p2.png');"></div>
+                      <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('image/p3.png');"></div>
+                      <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('image/p4.png');"></div>
+                      <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('image/p5.png');"></div>
+                      <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('image/p6.png');"></div>
+                    </div>
+                    <!-- 渐变遮罩和文字（保持不变） -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white pointer-events-none">
+                      <p class="text-sm opacity-90">江海之汇，自在东方；入此境，执笔你的人生传奇</p>
+                    </div>
+                  </div>
+                                    
+                <div class="safe-area mt-4">
+                    <div class="grid grid-cols-4 gap-3 mb-6">
+                        <div class="text-center p-3 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 mx-auto mb-2 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-ticket-alt text-red-600 text-xl"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">购票</span>
+                        </div>
+                        <div class="text-center p-3 bg-white rounded-xl shadow-sm cursor-pointer" onclick="window.location.href='character-test.html'">
+                            <div class="w-12 h-12 mx-auto mb-2 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user-circle text-blue-600 text-xl"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">角色测试</span>
+                        </div>
+                        <div class="text-center p-3 bg-white rounded-xl shadow-sm cursor-pointer" onclick="window.location.href='my-script.html'">
+                            <div class="w-12 h-12 mx-auto mb-2 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-book text-purple-600 text-xl"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">我的剧本</span>
+                        </div>
+                        <div class="text-center p-3 bg-white rounded-xl shadow-sm">
+                            <div class="w-12 h-12 mx-auto mb-2 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-vr-cardboard text-green-600 text-xl"></i>
+                            </div>
+                            <span class="text-xs text-gray-500">360全景</span>
+                        </div>
+                    </div>
+                    
+                    <h2 class="section-title text-lg font-bold mb-3" style="font-family: var(--font-serif);">三大文明时代</h2>
+                    <div class="space-y-3 mb-6">
+                        <div class="card p-0 overflow-hidden">
+                            <div class="relative h-32 bg-cover bg-center" style="background-image: url('image/p2.png')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                                    <h3 class="font-bold text-lg mb-1">崧泽·良渚文明</h3>
+                                    <p class="text-xs opacity-90">源点 · 远古纪元</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-0 overflow-hidden">
+                            <div class="relative h-32 bg-cover bg-center" style="background-image: url('image/p3.png')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                                    <h3 class="font-bold text-lg mb-1">唐宋·青龙镇</h3>
+                                    <p class="text-xs opacity-90">主轴 · 海丝盛景</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-0 overflow-hidden">
+                            <div class="relative h-32 bg-cover bg-center" style="background-image: url('image/p1.png')">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                                    <h3 class="font-bold text-lg mb-1">近代·开埠至今</h3>
+                                    <p class="text-xs opacity-90">汇流 · 洋场新韵</p>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="section-title text-lg font-bold mb-3" style="font-family: var(--font-serif);">精彩内容</h2>
+                    <div class="space-y-3 mb-6">
+                        <div class="card">
+                            <div class="flex items-center gap-3">
+                                <div class="w-20 h-20 bg-cover bg-center rounded-lg flex-shrink-0" style="background-image: url('image/p6.png')"></div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium mb-1">今日节目单</h4>
+                                    <p class="text-xs text-gray-500">查看今日演出时间表</p>
+                                    <div class="mt-2 flex items-center gap-2 text-xs" style="color: var(--color-primary);">
+                                        <i class="fas fa-clock"></i>
+                                        <span>14:00 青龙镇剧场</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="flex items-center gap-3">
+                                <div class="w-20 h-20 bg-cover bg-center rounded-lg flex-shrink-0" style="background-image: url('image/juese2.png')"></div>
+                                <div class="flex-1">
+                                    <h4 class="font-medium mb-1">场景视频</h4>
+                                    <p class="text-xs text-gray-500">沉浸式场景预览</p>
+                                    <div class="mt-2 flex items-center gap-2 text-xs text-blue-600">
+                                        <i class="fas fa-play-circle"></i>
+                                        <span>12个场景视频</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="app-container" class="page-content-container">
+                <!-- 页面内容将通过JS动态加载 -->
+            </div>
+            
+            <div id="main-tab-bar" class="tab-bar">
+    <a href="home.html" class="tab-bar-item active">
+        <i class="tab-bar-icon fas fa-home"></i>
+        <span class="tab-bar-text">主页</span>
+    </a>
+    <a href="world.html" class="tab-bar-item">
+        <i class="tab-bar-icon fas fa-globe"></i>
+        <span class="tab-bar-text">世界</span>
+    </a>
+    <a href="social.html" class="tab-bar-item">
+        <i class="tab-bar-icon fas fa-users"></i>
+        <span class="tab-bar-text">社交</span>
+    </a>
+    <a href="profile.html" class="tab-bar-item">
+        <i class="tab-bar-icon fas fa-user"></i>
+        <span class="tab-bar-text">我的</span>
+    </a>
+</div>
+        </div> <!-- 这里是.iphone-screen的结束标签 -->
+    </div>
+</body>
+</html>
